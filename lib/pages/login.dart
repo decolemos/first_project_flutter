@@ -12,10 +12,22 @@ class LoginPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(40),
-          child: const FormLogin(),
-        )
+        child: Stack(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 50),
+              child: SizedBox(
+                width: double.infinity,
+                height: 150,
+                child: Image.asset('assets/login.png'),
+              ),
+            ),
+              Container(
+              padding: const EdgeInsets.all(40),
+              child: const FormLogin(),
+            ),
+          ],
+        ),
       ),
     );
   }

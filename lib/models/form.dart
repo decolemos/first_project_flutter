@@ -11,13 +11,25 @@ class _FormLoginState extends State<FormLogin> {
 
   final _formKey  = GlobalKey<FormState>();
 
+  FocusNode inputNode = FocusNode();
+
+  void openKeyboard() {
+    FocusScope.of(context).requestFocus(inputNode);
+  }
+
+  String email = '';
+  String password = '';
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextFormField(
+            focusNode: inputNode,
+            autofocus: true,
             decoration: const InputDecoration(
               icon: Icon(Icons.person),
               hintText: 'Inform your registration',
@@ -29,9 +41,17 @@ class _FormLoginState extends State<FormLogin> {
               }
               return null;
             },
+            onSaved: (txt) {
+              setState(() {
+                email = txt!;
+              });
+            },
           ),
           const Padding(padding: EdgeInsets.only(top: 20)),
           TextFormField(
+            onTap: () {
+              
+            },
             obscureText: true,
             decoration: const InputDecoration(
               icon: Icon(Icons.password),
@@ -44,7 +64,19 @@ class _FormLoginState extends State<FormLogin> {
               }
               return null;
             },
+            onSaved: (txt) {
+              setState(() {
+                password = txt!;
+              });
+            },
           ),
+          const Padding(padding: EdgeInsets.all(40)),
+          ElevatedButton(
+            onPressed: (){
+
+            },
+            child: const Text('Submit'),
+          )
         ],
       ),
     );
