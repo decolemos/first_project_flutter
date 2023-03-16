@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import '../models/form.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class PerfilPage extends StatefulWidget {
+  const PerfilPage({super.key});
 
+  @override
+  State<PerfilPage> createState() => _PerfilPageState();
+}
+
+class _PerfilPageState extends State<PerfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login Page'),
+        title: const Text('Perfil Page'),
         centerTitle: true,
       ),
       body: Center(
@@ -17,14 +21,9 @@ class LoginPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(top: 50),
               child: SizedBox(
-                width: double.infinity,
                 height: 150,
                 child: Image.asset('assets/login.png'),
               ),
-            ),
-              Container(
-              padding: const EdgeInsets.all(40),
-              child: const FormLogin(),
             ),
           ],
         ),

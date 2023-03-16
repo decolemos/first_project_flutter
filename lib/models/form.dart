@@ -11,11 +11,11 @@ class _FormLoginState extends State<FormLogin> {
 
   final _formKey  = GlobalKey<FormState>();
 
-  FocusNode inputNode = FocusNode();
+  // FocusNode inputNode = FocusNode();
 
-  void openKeyboard() {
-    FocusScope.of(context).requestFocus(inputNode);
-  }
+  // void openKeyboard() {
+  //   FocusScope.of(context).requestFocus(inputNode);
+  // }
 
   String email = '';
   String password = '';
@@ -28,8 +28,8 @@ class _FormLoginState extends State<FormLogin> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextFormField(
-            focusNode: inputNode,
-            autofocus: true,
+            // focusNode: inputNode,
+            // autofocus: true,
             decoration: const InputDecoration(
               icon: Icon(Icons.person),
               hintText: 'Inform your registration',
@@ -49,9 +49,6 @@ class _FormLoginState extends State<FormLogin> {
           ),
           const Padding(padding: EdgeInsets.only(top: 20)),
           TextFormField(
-            onTap: () {
-              
-            },
             obscureText: true,
             decoration: const InputDecoration(
               icon: Icon(Icons.password),
@@ -73,7 +70,10 @@ class _FormLoginState extends State<FormLogin> {
           const Padding(padding: EdgeInsets.all(40)),
           ElevatedButton(
             onPressed: (){
-
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState?.save();
+                Navigator.pushNamed(context, '/perfil');
+              }
             },
             child: const Text('Submit'),
           )
