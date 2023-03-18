@@ -1,4 +1,8 @@
+// ignore_for_file: avoid_print
+
+import 'package:first_project_flutter/provider/login_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FormLogin extends StatefulWidget {
   const FormLogin({super.key});
@@ -11,14 +15,13 @@ class _FormLoginState extends State<FormLogin> {
 
   final _formKey  = GlobalKey<FormState>();
 
-  // FocusNode inputNode = FocusNode();
-
-  // void openKeyboard() {
-  //   FocusScope.of(context).requestFocus(inputNode);
-  // }
-
   String email = '';
   String password = '';
+
+  void printUser() {
+    print('E-mail: $email');
+    print('Passwaord: $password');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +31,6 @@ class _FormLoginState extends State<FormLogin> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextFormField(
-            // focusNode: inputNode,
-            // autofocus: true,
             decoration: const InputDecoration(
               icon: Icon(Icons.person),
               hintText: 'Inform your registration',
@@ -72,13 +73,22 @@ class _FormLoginState extends State<FormLogin> {
             onPressed: (){
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState?.save();
+                // printUser();
+                Provider.of<LoginData>(context, listen: false).saveUser(email, password);
                 Navigator.pushNamed(context, '/perfil');
               }
             },
             child: const Text('Submit'),
+          ),
+          Column(
+            children: [
+              Text('E-mail: $email'),
+              Text('Password: $password')
+            ],
           )
         ],
       ),
     );
   }
 }
+
