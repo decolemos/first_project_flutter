@@ -15,11 +15,11 @@ class _FormLoginState extends State<FormLogin> {
 
   final _formKey  = GlobalKey<FormState>();
 
-  String email = '';
+  String user = '';
   String password = '';
 
   void printUser() {
-    print('E-mail: $email');
+    print('E-mail: $user');
     print('Passwaord: $password');
   }
 
@@ -33,18 +33,18 @@ class _FormLoginState extends State<FormLogin> {
           TextFormField(
             decoration: const InputDecoration(
               icon: Icon(Icons.person),
-              hintText: 'Inform your registration',
-              labelText: 'Registration',
+              hintText: 'Inform your user',
+              labelText: 'User',
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'please inform registration';
+                return 'please inform user';
               }
               return null;
             },
             onSaved: (txt) {
               setState(() {
-                email = txt!;
+                user = txt!;
               });
             },
           ),
@@ -74,18 +74,12 @@ class _FormLoginState extends State<FormLogin> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState?.save();
                 // printUser();
-                Provider.of<LoginData>(context, listen: false).saveUser(email, password);
-                Navigator.pushNamed(context, '/perfil');
+                Provider.of<LoginData>(context, listen: false).saveUser(user, password);
+                Navigator.pushNamed(context, '/profile');
               }
             },
             child: const Text('Submit'),
           ),
-          Column(
-            children: [
-              Text('E-mail: $email'),
-              Text('Password: $password')
-            ],
-          )
         ],
       ),
     );

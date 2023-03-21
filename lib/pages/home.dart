@@ -13,10 +13,10 @@ class HomePage extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Image.asset('assets/studying.png'),
           ),
-          Center(
+          const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Flutter Course', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
                 Text('Applying Knowledge', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
               ],

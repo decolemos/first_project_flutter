@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class LoginData with ChangeNotifier{
 
-  String email = '';
+  String user = '';
   String password = '';
 
   void saveUser(String newEmail, String newPassword) {
-    email = newEmail;
+    user = newEmail;
     password = newPassword;
     notifyListeners();
   }
